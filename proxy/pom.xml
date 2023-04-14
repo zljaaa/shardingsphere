@@ -33,4 +33,12 @@
         <module>backend</module>
         <module>bootstrap</module>
     </modules>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com</groupId>
+            <artifactId>snowdriver</artifactId>
+            <version>1</version>
+        </dependency>
+    </dependencies>
 </project>

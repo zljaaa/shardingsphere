@@ -68,6 +68,7 @@ public final class CommandExecutorTask implements Runnable {
      */
     @Override
     public void run() {
+        // proxy 入口
         boolean isNeedFlush = false;
         boolean sqlShowEnabled = ProxyContext.getInstance().getContextManager().getMetaDataContexts().getMetaData().getProps().getValue(ConfigurationPropertyKey.SQL_SHOW);
         try (PacketPayload payload = databaseProtocolFrontendEngine.getCodecEngine().createPacketPayload((ByteBuf) message, context.channel().attr(CommonConstants.CHARSET_ATTRIBUTE_KEY).get())) {

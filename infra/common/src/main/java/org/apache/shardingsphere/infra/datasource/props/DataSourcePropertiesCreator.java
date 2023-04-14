@@ -44,6 +44,7 @@ public final class DataSourcePropertiesCreator {
      * @return created data source properties
      */
     public static DataSourceProperties create(final String dataSourcePoolClassName, final DataSourceConfiguration dataSourceConfig) {
+        
         return new DataSourceProperties(dataSourcePoolClassName, createProperties(dataSourceConfig));
     }
     

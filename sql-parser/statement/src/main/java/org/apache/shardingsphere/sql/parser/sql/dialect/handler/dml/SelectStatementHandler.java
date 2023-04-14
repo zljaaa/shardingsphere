@@ -19,6 +19,7 @@ package org.apache.shardingsphere.sql.parser.sql.dialect.handler.dml;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.apache.shardingsphere.sql.parser.sql.common.segment.dml.order.GroupBySegment;
 import org.apache.shardingsphere.sql.parser.sql.common.segment.dml.pagination.limit.LimitSegment;
 import org.apache.shardingsphere.sql.parser.sql.common.segment.dml.predicate.LockSegment;
 import org.apache.shardingsphere.sql.parser.sql.common.segment.generic.ModelSegment;
@@ -138,6 +139,25 @@ public final class SelectStatementHandler implements SQLStatementHandler {
     public static Optional<ModelSegment> getModelSegment(final SelectStatement selectStatement) {
         if (selectStatement instanceof OracleStatement) {
             return ((OracleSelectStatement) selectStatement).getModelSegment();
+        }
+        return Optional.empty();
+    }
+    
+    public static Optional<GroupBySegment> getGroupBySegment(final SelectStatement selectStatement) {
+        if (selectStatement instanceof MySQLStatement) {
+            return ((MySQLSelectStatement) selectStatement).getGroupBy();
+        }
+        if (selectStatement instanceof PostgreSQLStatement) {
+            return ((PostgreSQLSelectStatement) selectStatement).getGroupBy();
+        }
+        if (selectStatement instanceof SQL92Statement) {
+            return ((SQL92SelectStatement) selectStatement).getGroupBy();
+        }
+        if (selectStatement instanceof SQLServerStatement) {
+            return ((SQLServerSelectStatement) selectStatement).getGroupBy();
+        }
+        if (selectStatement instanceof OpenGaussStatement) {
+            return ((OpenGaussSelectStatement) selectStatement).getGroupBy();
         }
         return Optional.empty();
     }

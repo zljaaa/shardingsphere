@@ -729,8 +729,38 @@ public abstract class MySQLStatementSQLVisitor extends MySQLStatementBaseVisitor
         if (null != ctx.windowClause()) {
             result.setWindow((WindowSegment) visit(ctx.windowClause()));
         }
+        // if (null != ctx.joinClause()){
+        // result.setJoin((JoinTableSegment) visit(ctx.joinClause()));
+        // }
         return result;
     }
+    
+    // @Override
+    // public ASTNode visitQueryMultipleTable(MySQLStatementParser.QuerySpecificationContext ctx){
+    // MySQLSelectStatement result = new MySQLSelectStatement();
+    // result.setProjections((ProjectionsSegment) visit(ctx.projections()));
+    // if (null != ctx.selectSpecification()) {
+    // result.getProjections().setDistinctRow(isDistinct(ctx));
+    // }
+    // if (null != ctx.fromClause() && null != ctx.fromClause().tableReferences()) {
+    // TableSegment tableSource = (TableSegment) visit(ctx.fromClause().tableReferences());
+    // result.setFrom(tableSource);
+    // }
+    // if (null != ctx.whereClause()) {
+    // result.setWhere((WhereSegment) visit(ctx.whereClause()));
+    // }
+    // if (null != ctx.groupByClause()) {
+    // result.setGroupBy((GroupBySegment) visit(ctx.groupByClause()));
+    // }
+    // if (null != ctx.havingClause()) {
+    // result.setHaving((HavingSegment) visit(ctx.havingClause()));
+    // }
+    // if (null != ctx.windowClause()) {
+    // result.setWindow((WindowSegment) visit(ctx.windowClause()));
+    // }
+    // return result;
+    // return null;
+    // }
     
     @Override
     public ASTNode visitTableStatement(final TableStatementContext ctx) {

@@ -40,6 +40,7 @@ import java.util.Map;
 @Setter
 public final class YamlShardingRuleConfiguration implements YamlRuleConfiguration {
     
+    // 存配置信息的
     private Map<String, YamlTableRuleConfiguration> tables = new LinkedHashMap<>();
     
     private Map<String, YamlShardingAutoTableRuleConfiguration> autoTables = new LinkedHashMap<>();

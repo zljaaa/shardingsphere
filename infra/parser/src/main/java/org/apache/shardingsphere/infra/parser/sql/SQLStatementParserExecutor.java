@@ -45,6 +45,7 @@ public final class SQLStatementParserExecutor {
      * @return SQL statement
      */
     public SQLStatement parse(final String sql) {
+        // 解析引擎先解析sql得到语法树ParseTree，再使用visitor引擎解析出SQLStatement
         return visitorEngine.visit(parserEngine.parse(sql, false));
     }
 }

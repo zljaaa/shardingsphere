@@ -17,6 +17,7 @@
 
 package org.apache.shardingsphere.infra.datasource.pool.creator;
 
+import groovy.transform.Undefined;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
@@ -103,6 +104,8 @@ public final class DataSourcePoolCreator {
     
     @SneakyThrows(ReflectiveOperationException.class)
     private static DataSource createDataSource(final String dataSourceClassName) {
+        Class.forName("com.inforefiner.snowball.SnowballDriver");
+        // Class.forName("oracle.jdbc.driver.OracleDriver");
         return (DataSource) Class.forName(dataSourceClassName).getConstructor().newInstance();
     }
     

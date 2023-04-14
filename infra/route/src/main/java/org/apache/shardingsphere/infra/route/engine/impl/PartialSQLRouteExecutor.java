@@ -66,6 +66,7 @@ public final class PartialSQLRouteExecutor implements SQLRouteExecutor {
         }
         for (Entry<ShardingSphereRule, SQLRouter> entry : routers.entrySet()) {
             if (result.getRouteUnits().isEmpty()) {
+                // 创建路由上下文
                 result = entry.getValue().createRouteContext(queryContext, database, entry.getKey(), props, connectionContext);
             } else {
                 entry.getValue().decorateRouteContext(result, queryContext, database, entry.getKey(), props, connectionContext);

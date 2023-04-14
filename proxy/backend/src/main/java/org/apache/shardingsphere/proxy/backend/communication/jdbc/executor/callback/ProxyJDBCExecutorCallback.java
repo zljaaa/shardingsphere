@@ -74,7 +74,7 @@ public abstract class ProxyJDBCExecutorCallback extends JDBCExecutorCallback<Exe
     
     private ExecuteResult executeSQL(final String sql, final Statement statement, final ConnectionMode connectionMode, final boolean withMetaData, final DatabaseType storageType) throws SQLException {
         databaseCommunicationEngine.add(statement);
-        if (execute(sql, statement, isReturnGeneratedKeys)) {
+        if (execute(sql, statement, isReturnGeneratedKeys, storageType)) {
             ResultSet resultSet = statement.getResultSet();
             databaseCommunicationEngine.add(resultSet);
             return createQueryResult(resultSet, connectionMode, storageType);
@@ -82,7 +82,7 @@ public abstract class ProxyJDBCExecutorCallback extends JDBCExecutorCallback<Exe
         return new UpdateResult(statement.getUpdateCount(), isReturnGeneratedKeys ? getGeneratedKey(statement) : 0L);
     }
     
-    protected abstract boolean execute(String sql, Statement statement, boolean isReturnGeneratedKeys) throws SQLException;
+    protected abstract boolean execute(String sql, Statement statement, boolean isReturnGeneratedKeys, final DatabaseType storageType) throws SQLException;
     
     private QueryResult createQueryResult(final ResultSet resultSet, final ConnectionMode connectionMode, final DatabaseType storageType) throws SQLException {
         return ConnectionMode.MEMORY_STRICTLY == connectionMode ? new JDBCStreamQueryResult(resultSet) : new JDBCMemoryQueryResult(resultSet, storageType);

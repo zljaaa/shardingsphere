@@ -17,7 +17,9 @@
 
 package org.apache.shardingsphere.proxy.backend.communication.jdbc.executor.callback.impl;
 
+import com.inforefiner.snowball.SnowballStatementImpl;
 import org.apache.shardingsphere.infra.database.type.DatabaseType;
+import org.apache.shardingsphere.infra.database.type.dialect.SnowBallDatabaseType;
 import org.apache.shardingsphere.proxy.backend.communication.DatabaseCommunicationEngine;
 import org.apache.shardingsphere.proxy.backend.communication.jdbc.executor.callback.ProxyJDBCExecutorCallback;
 import org.apache.shardingsphere.sql.parser.sql.common.statement.SQLStatement;
@@ -38,7 +40,11 @@ public final class ProxyStatementExecutorCallback extends ProxyJDBCExecutorCallb
     }
     
     @Override
-    protected boolean execute(final String sql, final Statement statement, final boolean isReturnGeneratedKeys) throws SQLException {
-        return statement.execute(sql, isReturnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS : Statement.NO_GENERATED_KEYS);
+    protected boolean execute(final String sql, final Statement statement, final boolean isReturnGeneratedKeys, final DatabaseType storageType) throws SQLException {
+        if (storageType instanceof SnowBallDatabaseType) {
+            return statement.execute(sql);
+        } else {
+            return statement.execute(sql, isReturnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS : Statement.NO_GENERATED_KEYS);
+        }
     }
 }

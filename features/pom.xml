@@ -35,5 +35,6 @@
         <module>encrypt</module>
         <module>shadow</module>
         <module>mask</module>
+        <module>query-splitting</module>
     </modules>
 </project>

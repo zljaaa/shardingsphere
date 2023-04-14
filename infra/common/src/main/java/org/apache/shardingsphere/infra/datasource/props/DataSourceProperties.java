@@ -48,7 +48,11 @@ public final class DataSourceProperties {
     private final CustomDataSourceProperties customDataSourceProperties;
     
     public DataSourceProperties(final String dataSourceClassName, final Map<String, Object> props) {
+        // if (props.get("url").toString().startsWith("jdbc:snowball://")){
+        // this.dataSourceClassName = "com.inforefiner.snowball.SnowballDriver";
+        // }else {
         this.dataSourceClassName = dataSourceClassName;
+        // }
         Optional<DataSourcePoolMetaData> poolMetaData = TypedSPIRegistry.findRegisteredService(DataSourcePoolMetaData.class, dataSourceClassName);
         Map<String, String> propertySynonyms = poolMetaData.isPresent() ? poolMetaData.get().getPropertySynonyms() : Collections.emptyMap();
         connectionPropertySynonyms = new ConnectionPropertySynonyms(props, propertySynonyms);

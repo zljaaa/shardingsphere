@@ -53,6 +53,8 @@
     
     <properties>
         <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.version.range>[3.0.4,)</maven.version.range>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.locale>zh_CN</project.build.locale>
@@ -483,6 +485,11 @@
                 <artifactId>opengauss-jdbc</artifactId>
                 <version>${opengauss.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com</groupId>
+                <artifactId>snowdriver</artifactId>
+                <version>1</version>
             </dependency>
             
             <dependency>
